@@ -32,7 +32,8 @@ class WeatherViewModel : ViewModel() {
                     fetchWeatherIcon(weatherResponse.weather.firstOrNull()?.icon.orEmpty())
                     _errorMessage.value = null
                 } else {
-                    _errorMessage.value = "Failed to fetch weather. Please check your API key or city name."
+                    _errorMessage.value =
+                        "Failed to fetch weather. Please check your API key or city name."
                 }
             } catch (e: Exception) {
                 _errorMessage.value = "An error occurred: ${e.localizedMessage}"
@@ -40,14 +41,25 @@ class WeatherViewModel : ViewModel() {
         }
     }
 
+    //Todo
     fun fetchForecastData(city: String, apiKey: String) {
-
-        ////////////////////////////////////
-
-        //Todo
-
-        ////////////////////////////////////
-
+        viewModelScope.launch {
+            try {
+                val forecastResponse = WeatherApiService.fetchForecast(city, apiKey)
+                if (forecastResponse != null) {
+                    _forecast.value = forecastResponse.list
+                    for (forecastItem: ForecastItem in forecastResponse.list) {
+                        fetchWeatherIcon(forecastItem.weather.firstOrNull()?.icon.orEmpty())
+                    }
+                    _errorMessage.value = null
+                } else {
+                    _errorMessage.value =
+                        "Failed to fetch forecast. Please check your API key or city name."
+                }
+            } catch (e: Exception) {
+                _errorMessage.value = "An error occurred: ${e.localizedMessage}"
+            }
+        }
     }
 
     private fun fetchWeatherIcon(iconId: String) {

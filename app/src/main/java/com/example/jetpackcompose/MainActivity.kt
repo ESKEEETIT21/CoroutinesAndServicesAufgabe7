@@ -15,8 +15,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //handlePopupService()      // Todo Uncomment this line
+        // Todo Uncomment this line
+        handlePopupService()
 
         setContent {
             val viewModel: WeatherViewModel = viewModel()
