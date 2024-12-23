@@ -39,7 +39,6 @@ fun WeatherApp(viewModel: WeatherViewModel) {
                     .background(lowerHalfColor)
             )
         }
-
         Box(
             modifier = Modifier
                 .fillMaxSize()
