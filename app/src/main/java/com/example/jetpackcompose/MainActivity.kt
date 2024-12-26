@@ -13,6 +13,11 @@ class MainActivity : ComponentActivity() {
 
     private val popupServiceManager = PopupServiceManager(this)
 
+    /**
+     * Initializes the activity and sets up the content view.
+     *
+     * @param savedInstanceState Restores previous state if available.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Todo Uncomment this line
@@ -24,6 +29,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    /**
+     * Manages permissions and starts the popup service based on the Android version.
+     */
     private fun handlePopupService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             popupServiceManager.requestPermission()

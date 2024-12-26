@@ -19,6 +19,11 @@ import com.example.jetpackcompose.viewmodel.WeatherViewModel
 import com.example.jetpackcompose.ui.components.SearchBarSample
 import com.example.jetpackcompose.ui.components.WeatherCard
 
+/**
+ * Displays the forecast weather view, including a search bar, error messages, and a list of forecast items.
+ *
+ * @param forecast List of forecast items to be displayed.
+ */
 @Composable
 fun ForecastWeatherView(forecast: List<ForecastItem>) {
     val context = LocalContext.current
